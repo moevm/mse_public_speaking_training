@@ -4,11 +4,11 @@ def callback(recognizer, audio):
     try:
         s = recognizer.recognize_google(audio, language="ru-RU")
         print(s)
-        print(len(s.split(" ")))
     except sr.UnknownValueError:
-        print("Робот не расслышал фразу")
+        s = 'error1'
     except sr.RequestError as e:
-        print("Ошибка сервиса; {0}".format(e))
+        s = 'error1'
+    return s
 
 
 r = sr.Recognizer()
