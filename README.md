@@ -2,8 +2,6 @@
 
 Env:
 pip install Python-pptx
-pip install pyaudio
-pip install wave
 pip install SpeechRecognition
 pip install time
 pip install django
@@ -20,3 +18,10 @@ pip install django
 			continue
 		text_slide += shape.text_frame + "\n"
 И добавляем text_slide в словарь вместе с текстом
+
+Работа модуля обработки звука:
+1) Подключается библиотека speech_recognition
+2) Начинается запись речи, которая продолжается до отстановки речи пользователя 
+3) Записанная речь отправляется на обработку с помощью recognize_google_api
+В результате получаем переменную типа String с распознанным текстом
+
