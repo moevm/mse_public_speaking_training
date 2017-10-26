@@ -4,7 +4,7 @@ Env:
 pip install Python-pptx
 pip install pyaudio
 pip install wave
-pip install speech_recognition
+pip install SpeechRecognition
 pip install time
 pip install django
 
