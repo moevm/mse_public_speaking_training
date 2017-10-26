@@ -1,7 +1,8 @@
 import pyaudio, wave
 import speech_recognition as sr
 
-#запись звука
+
+# запись звука
 def Record():
     CHUNK = 1024
     FORMAT = pyaudio.paInt16
@@ -13,10 +14,10 @@ def Record():
     p = pyaudio.PyAudio()
 
     stream = p.open(format=FORMAT,
-                channels=CHANNELS,
-                rate=RATE,
-                input=True,
-                frames_per_buffer=CHUNK)
+                    channels=CHANNELS,
+                    rate=RATE,
+                    input=True,
+                    frames_per_buffer=CHUNK)
     frames = []
 
     for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
@@ -26,7 +27,6 @@ def Record():
     stream.stop_stream()
     stream.close()
     p.terminate()
-
 
     wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
     wf.setnchannels(CHANNELS)
