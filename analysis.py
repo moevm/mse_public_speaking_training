@@ -51,12 +51,6 @@ def simpleSpeed(time, countWord):
     pylab.xlabel("Секунды")
     pylab.show()
 
-    pylab.plot(time, speed)
-    pylab.title("График скорости")
-    pylab.ylabel("Скорость (количество слов в секунду)")
-    pylab.xlabel("Секунды")
-    pylab.show()
-
 
 time = [20, 50, 67, 89, 105]
 countWord = [30, 55, 34, 17, 44]
@@ -103,18 +97,45 @@ def SpeedReport(time, countWord):
 
 # сопоставление распознанных слов и текста со слайдов
 # подсчитываем процент сказанных слов из текста со слайда
-# простой способ, то есть смотрим есть ли слово со слайда в речи или нет
 # выявление неосвященных тем - это те слайды, у которых процент меньше 60
 # передается текст со слайдов и список полученный из massWord
 def comparisionOfTheme(dict, listWord):
     percent = []
     for i in range(len(listWord)):
-        list = listWord[i].split(" ")
+        mapSlideText = {}
+        slideText = dict[i].split(" ")
+        for el in slideText:
+            count = mapSlideText.get(el)
+            if count == None:
+                mapSlideText[el] = 1
+            else:
+                mapSlideText[el] = count + 1
+        mapSpeechText = {}
+        speechText = listWord[i].split(" ")
+        for el in speechText:
+            count = mapSpeechText.get(el)
+            if count == None:
+                mapSpeechText[el] = 1
+            else:
+                mapSpeechText[el] = count + 1
+
         count = 0
-        for el in list:
-            if el in dict[i]:
-                count += 1
-        percent.append(count * 100.0 / len(listWord[i]))
+        for el in mapSlideText.keys():
+            countSlide = mapSlideText.get(el)
+            countSpeech = mapSpeechText.get(el)
+            if  countSpeech != None:
+                if (countSlide < countSpeech):
+                    count += countSlide
+                else:
+                    count += countSpeech
+        percent.append(count * 100.0 / len(slideText))
+    print(percent)
+
+
+#dict = ['ald asf efhs skhe', 'oh ash ewds oih sx', 'ohuogwe qwe oi sda hoh', 'ohuwed owis wqe f qw', 'a a a a a a', 'ohe oue qw sf qw']
+#listWord = ['ald ald a a aasf efhs skhe', 'axe qwead ewds erash ewds oih sx', 'ohuogwe qwefsd oiwes sda hoh', 'ohuwedwqe  wq qwe qwe owis wqe f qw', 'a a a', 'ohe oue qw sf qw']
+
+#comparisionOfTheme(dict, listWord)
 
 
 
