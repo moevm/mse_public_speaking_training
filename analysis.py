@@ -1,4 +1,4 @@
-#считаем, что у нас есть распарсенная презентация и массив из аудиофайлов для каждого слайда
+#считаем, что у нас есть распарсенная презентация, список из аудиофайлов для каждого слайда и список секунд, в которые заканчивает показ слайда
 
 import speech_recognition as sr
 import ProcessingSound2 as sound
@@ -27,11 +27,9 @@ def wordsOnSlide(listWord):
             countWord.append(len(el.split(" ")))
     return countWord
 
-#graphWordsOnSlide(["l", "", "f f f f", "a a a a a a a", "r r r r", "2 f w e", "a s d f g"])
-
 # график скорости (простой, то есть просто время аудиозаписи на количество сказанных слов)
 # передается список секунд, в которые заканчивался показ данного слайда
-# и список полученный из graphWordOnSlide
+# и список полученный из wordsOnSlide
 def simpleSpeed(time, countWord):
     speed = []
     for i in range(len(time)):
@@ -60,7 +58,7 @@ countWord = [30, 55, 34, 17, 44]
 # на первом графике показывается расход времени на слайд и среднее время на слайд
 # на втором графике показывается расход слов на слайд и среднее количество слов на слайд
 # передается список секунд, в которые заканчивался показ данного слайда
-# и список полученный из graphWordOnSlide
+# и список полученный из wordsOnSlide
 def SpeedReport(time, countWord):
     numSlide = range(1, len(time) + 1)
     timeSlide = []
@@ -69,10 +67,7 @@ def SpeedReport(time, countWord):
             timeSlide.append(time[0])
         else:
             timeSlide.append(time[i] - time[i - 1])
-    averageTime = 0
-    for el in timeSlide:
-        averageTime += el
-    averageTime /= len(time)
+    averageTime = time[len(time) - 1] / len(time)
     pylab.plot(numSlide, timeSlide, 'g')
     pylab.plot([0, len(time)], [averageTime, averageTime], 'r--')
     pylab.axis([1, len(time), 0, max(timeSlide) + 10])
