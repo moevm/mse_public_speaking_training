@@ -75,7 +75,7 @@ def SpeedReport(time, countWord):
     averageTime /= len(time)
     pylab.plot(numSlide, timeSlide, 'g')
     pylab.plot([0, len(time)], [averageTime, averageTime], 'r--')
-    pylab.axis([1, len(time), 0, max(time) + 10])
+    pylab.axis([1, len(time), 0, max(timeSlide) + 10])
     pylab.title("Расход времени на слайд")
     pylab.ylabel("Количество секунд")
     pylab.xlabel("Номер слайда")
@@ -132,10 +132,10 @@ def comparisionOfTheme(dict, listWord):
     print(percent)
 
 
-#dict = ['ald asf efhs skhe', 'oh ash ewds oih sx', 'ohuogwe qwe oi sda hoh', 'ohuwed owis wqe f qw', 'a a a a a a', 'ohe oue qw sf qw']
-#listWord = ['ald ald a a aasf efhs skhe', 'axe qwead ewds erash ewds oih sx', 'ohuogwe qwefsd oiwes sda hoh', 'ohuwedwqe  wq qwe qwe owis wqe f qw', 'a a a', 'ohe oue qw sf qw']
+dict = ['презентация', 'слайд номер один', 'слайд номер два', 'слайд слайд слайд', 'на слайде четыре', 'конец презентации']
+listWord = ['тестовая презентация', 'первый слайд', 'слайд номер два слайд номер два', 'слайд', 'слайд', 'конец']
 
-#comparisionOfTheme(dict, listWord)
+comparisionOfTheme(dict, listWord)
 
 
 
