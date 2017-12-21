@@ -3,7 +3,7 @@ import re
 
 def parser(prs):
     list = prs.slides
-    dict = []
+    dict = {}
     for el in list:
         text_slide = ''
         for shape in el.shapes:
@@ -11,5 +11,9 @@ def parser(prs):
                 continue
             text_slide += shape.text_frame.text + ' '
         text = re.sub(r'\W', ' ', text_slide)
-        dict.append([el, text])
+        dict[str(el)]=([el, text])
     return dict
+
+prs = Presentation('1.pptx')
+dict=parser(prs)
+print(dict)

@@ -27,3 +27,4 @@ pip install django
 3) Записанная речь отправляется на обработку с помощью recognize_google_api
 В результате получаем переменную типа String с распознанным текстом
 ![Image alt](https://github.com/moevm/mse_public_speaking_training/raw/master/sound.png)
+
