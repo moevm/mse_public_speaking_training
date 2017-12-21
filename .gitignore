@@ -3,4 +3,8 @@
 .idea/mse_public_speaking_training.iml
 Steam.pptx
 output1.wav
+<<<<<<< HEAD
+=======
+*.pptx
+>>>>>>> sound
 __pycache__/ProcessingSound2.cpython-36.pyc
