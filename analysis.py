@@ -32,6 +32,7 @@ def wordsOnSlide(listWord):
 # и список полученный из wordsOnSlide
 def simpleSpeed(time, countWord):
     speed = []
+    max = 0
     for i in range(len(time)):
         if i == 0:
             t = time[0]
@@ -39,20 +40,22 @@ def simpleSpeed(time, countWord):
             t = time[i] - time[i - 1]
         speed.append(countWord[i] / t)
     for i in range(len(speed)):
+        if (max < speed[i]):
+            max = speed[i]
         if i == 0:
             pylab.plot([0.0, time[0]], [speed[i], speed[i]], 'g')
+            pylab.plot([time[0], time[0]], [-1.0, 10.0], 'r--')
+            pylab.text( 1.0, speed[i] + 0.02, str(i + 1) + ' слайд')
         else:
             pylab.plot([time[i - 1], time[i - 1]], [speed[i - 1], speed[i]], 'g')
             pylab.plot([time[i - 1], time[i]], [speed[i], speed[i]], 'g')
+            pylab.plot([time[i], time[i]], [-1.0, 10.0], 'r--')
+            pylab.text(time[i - 1] + 1, speed[i] + 0.02, str(i + 1) + ' слайд')
     pylab.title("График скорости")
     pylab.ylabel("Скорость (количество слов в секунду)")
     pylab.xlabel("Секунды")
+    pylab.ylim([0, max + 1])
     pylab.show()
-
-
-time = [20, 50, 67, 89, 105]
-countWord = [30, 55, 34, 17, 44]
-#simpleSpeed(time, countWord)
 
 # график скорости доклада
 # на первом графике показывается расход времени на слайд и среднее время на слайд
@@ -127,11 +130,13 @@ def comparisionOfTheme(dict, listWord):
     print(percent)
 
 
-dict = ['презентация', 'слайд номер один', 'слайд номер два', 'слайд слайд слайд', 'на слайде четыре', 'конец презентации']
-listWord = ['тестовая презентация', 'первый слайд', 'слайд номер два слайд номер два', 'слайд', 'слайд', 'конец']
+#dict = ['презентация', 'слайд номер один', 'слайд номер два', 'слайд слайд слайд', 'на слайде четыре', 'конец презентации']
+#listWord = ['тестовая презентация', 'первый слайд', 'слайд номер два слайд номер два', 'слайд', 'слайд', 'конец']
 
-comparisionOfTheme(dict, listWord)
+#comparisionOfTheme(dict, listWord)
 
-
+time = [20, 50, 67, 89, 105]
+countWord = [30, 55, 34, 17, 44]
+simpleSpeed(time, countWord)
 
 
