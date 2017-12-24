@@ -6,6 +6,18 @@ pip install SpeechRecognition
 pip install time
 pip install django
 
+Веб страница:
+1) Открывается страница, на которой выбирается презентация для выступления и указывается временной порог, в который необходимо уложиться.
+![Image alt](https://github.com/moevm/mse_public_speaking_training/blob/master/images/web1.jpg)
+2) После нажатию на кнопку "Начать" открывается страница с первым слайдом презентации и кнопками для управления.
+![Image alt](https://github.com/moevm/mse_public_speaking_training/blob/master/images/web2.jpg)
+3) Для того, чтобы начать тренировку, необходимо нажать на кнопку "Старт". После этого начнется обратный отсчет времени.
+![Image alt](https://github.com/moevm/mse_public_speaking_training/blob/master/images/web3.jpg)
+4) Если пользователь не уложился в заданный временной порог, то тренировка не останавливается, а продолжается. Причем таймер идет с отрицательным значением
+![Image alt](https://github.com/moevm/mse_public_speaking_training/blob/master/images/web4.jpg)
+5) Для того, чтобы закончить тренировку, необходимо нажать на кнопку "Стоп". После этого выведется окошко с результатами.
+![Image alt](https://github.com/moevm/mse_public_speaking_training/blob/master/images/web5.jpg)
+
 Работа парсера:
 1) Подключение библиотеки python-pptx
 2) Для получения списка слайдов используем функцию slides(), в результате получаем список слайдов.
