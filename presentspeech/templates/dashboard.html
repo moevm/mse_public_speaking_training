@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="form">
+        <form method="post" action="{% url 'dashboard' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.presentation }}
+            {{ form.timer }}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <button type="submit">Начать</button>
+        </form>
+      </div>
+
+    {% if presentation %}
+        <img src="/presentation/{{presentation_id}}/0/">
+    {% endif %}
+{% endblock %}

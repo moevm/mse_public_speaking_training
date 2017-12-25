@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block extrascripts %}
+    <script src="/static/js/audiorecord.js"></script>
+    <script src="/static/js/recorder.js"></script>
+    <script src="/static/js/slides.js"></script>
+{% endblock %}
+
+{% block content %}
+    <img class="p_slide" src="/presentation/{{presentation_id}}/0/">
+
+    <script>
+        // this is bad
+        {% if timer %}
+            var timer_value = {{timer}};
+        {% else %}
+            var timer_value = 5;
+        {% endif %}
+
+        var current_slide = 0;
+
+        function prev_slide(){
+            if(current_slide <= 0){
+                //do nothing
+            } else {
+                current_slide -= 1;
+                $('.p_slide').attr("src","/presentation/{{presentation_id}}/" + current_slide + "/");
+
+            }
+        }
+
+        function next_slide(){
+            if( current_slide >= ( {{max_slides}} - 1 ) ){
+                //do nothing
+            } else {
+                current_slide += 1;
+                $('.p_slide').attr("src","/presentation/{{presentation_id}}/" + current_slide + "/");
+            }
+        }
+
+    </script>
+
+    <div class="container">
+        {% if timer %}
+        <div class="timer">
+            <div>Времени осталось = <span id="timer"></span></div>
+        </div>
+        {% endif %}
+
+        <button onclick="start_presentation();">Старт</button>
+        <button onclick="prev_slide();">Предыдущий</button>
+        <button onclick="next_slide();">Следующий</button>
+        <section class="sound-clips">
+
+        </section>
+    </div>
+    <script>
+         document.getElementById('timer').innerHTML = timer_value + ":" + 00;
+
+        function startTimer() {
+          var presentTime = document.getElementById('timer').innerHTML;
+          var timeArray = presentTime.split(/[:]+/);
+          var m = timeArray[0];
+          var s = checkSecond((timeArray[1] - 1));
+          if(s==59){m=m-1}
+          //if(m<0){alert('timer completed')}
+
+          document.getElementById('timer').innerHTML =
+            m + ":" + s;
+          setTimeout(startTimer, 1000);
+        }
+
+        function checkSecond(sec) {
+          if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+          if (sec < 0) {sec = "59"};
+          return sec;
+        }
+    </script>
+{% endblock %}
